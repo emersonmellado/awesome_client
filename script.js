@@ -1,5 +1,5 @@
 function render() {
-    const apiURL = "http://localhost:3000/api/categories/";
+    const apiURL = "https://awesome-server.herokuapp.com/api/categories";
     fetch(apiURL)
         .then(function (response) {
             return response.json();
