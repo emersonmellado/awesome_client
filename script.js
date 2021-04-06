@@ -7,9 +7,9 @@ function render() {
         .then(renderCategories);
 
     function renderCategories(categories) {
-        const container = document.getElementById('categories');
+        const container = document.getElementById('nav');
         container.innerHTML = '';
-        const list = document.createElement('ol');
+        const list = document.createElement('ul');
 
         categories.forEach((category) => {
             const entry = document.createElement('li');
