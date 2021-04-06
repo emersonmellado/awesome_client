@@ -1,5 +1,6 @@
-function renderProducts() {
-    const apiURL = "https://awesome-server.herokuapp.com/api/products";
+function renderProducts(category) {
+    // const apiURL = "https://awesome-server.herokuapp.com/api/products/?category=" + category;
+    const apiURL = "http://localhost:3000/api/products/?category=" + category;
     fetch(apiURL)
         .then(function (response) {
             return response.json();
@@ -12,37 +13,39 @@ function renderProducts() {
         const list = document.createElement('ul');
         list.classList.add("features");
 
-        // <li>
-        //     <span class="icon solid major style1 fa-code"></span>
-        //     <h3>Ipsum consequat</h3>
-        //     <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
-        // </li>
+        if (products.length) {
+            products.forEach((product) => {
+                const entry = document.createElement('li');
+                const image = document.createElement('img');
+                const title = document.createElement('h3');
+                const description = document.createElement('p');
+                const tags = document.createElement('p');
+                const categories = document.createElement('p');
 
-        products.forEach((product) => {
+                image.src = product.image;
+                description.innerHTML = product.short_description
+                tags.innerHTML = "Tags: " + product.tags
+                categories.innerHTML = "Categories: " + product.category
+
+                title.innerHTML = product.name;
+
+                entry.appendChild(image)
+                entry.appendChild(title)
+                entry.appendChild(description)
+                entry.appendChild(tags)
+                entry.appendChild(categories)
+
+                list.appendChild(entry);
+            })
+        } else {
             const entry = document.createElement('li');
-            const image = document.createElement('img');
             const title = document.createElement('h3');
-            const description = document.createElement('p');
-            const tags = document.createElement('p');
-            const categories = document.createElement('p');
-
-            image.src=product.image;
-            description.innerHTML = product.short_description
-            tags.innerHTML = "Tags: " + product.tags
-            categories.innerHTML = "Categories: " + product.category
-
-            title.innerHTML = product.name;
-
-            entry.appendChild(image)
-            entry.appendChild(title)
-            entry.appendChild(description)
-            entry.appendChild(tags)
-            entry.appendChild(categories)
-
+            title.innerHTML = "No products in this category";
+            entry.appendChild(title);
             list.appendChild(entry);
-        })
-
+        }
         container.appendChild(list);
     }
 }
-renderProducts();
+var urlParams = new URLSearchParams(window.location.search);
+renderProducts(urlParams.get('category'));

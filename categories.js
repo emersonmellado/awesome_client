@@ -1,5 +1,6 @@
 function renderCategories() {
-    const apiURL = "https://awesome-server.herokuapp.com/api/categories";
+    // const apiURL = "https://awesome-server.herokuapp.com/api/categories";
+    const apiURL = "http://localhost:3000/api/categories";
     fetch(apiURL)
         .then(function (response) {
             return response.json();
@@ -13,7 +14,10 @@ function renderCategories() {
 
         categories.forEach((category) => {
             const entry = document.createElement('li');
-            entry.innerHTML = category.name;
+            const anchor = document.createElement('a');
+            anchor.href="?category=" + category.name;
+            anchor.innerHTML = category.name;
+            entry.appendChild(anchor);
             list.appendChild(entry);
         })
 
