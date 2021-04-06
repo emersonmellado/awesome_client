@@ -1,12 +1,12 @@
-function render() {
+function renderCategories() {
     const apiURL = "https://awesome-server.herokuapp.com/api/categories";
     fetch(apiURL)
         .then(function (response) {
             return response.json();
         })
-        .then(renderCategories);
+        .then(generateHtml);
 
-    function renderCategories(categories) {
+    function generateHtml(categories) {
         const container = document.getElementById('nav');
         container.innerHTML = '';
         const list = document.createElement('ul');
@@ -20,4 +20,4 @@ function render() {
         container.appendChild(list);
     }
 }
-render();
+renderCategories();
