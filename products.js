@@ -23,14 +23,21 @@ function renderProducts() {
             const image = document.createElement('img');
             const title = document.createElement('h3');
             const description = document.createElement('p');
+            const tags = document.createElement('p');
+            const categories = document.createElement('p');
+
             image.src=product.image;
             description.innerHTML = product.short_description
+            tags.innerHTML = "Tags: " + product.tags
+            categories.innerHTML = "Categories: " + product.category
 
             title.innerHTML = product.name;
 
             entry.appendChild(image)
             entry.appendChild(title)
             entry.appendChild(description)
+            entry.appendChild(tags)
+            entry.appendChild(categories)
 
             list.appendChild(entry);
         })
