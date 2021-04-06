@@ -22,25 +22,36 @@
 					<header id="header" class="alt">
 						<span class="logo"><img src="images/logo.svg" alt="" /></span>
 						<h1>Awesome Book Store</h1>
+						
 						<p>This store is just awesome</p>
 					</header>
 
 				<!-- Nav -->
-					<nav id="nav">
-						<!-- <ul>
-							<li><a href="#intro" class="active">Introduction</a></li>
-							<li><a href="#first">First Section</a></li>
-							<li><a href="#second">Second Section</a></li>
-							<li><a href="#cta">Get Started</a></li>
-						</ul> -->
-					</nav>
+				<nav id="nav">							
+					<div id="categories_app">
+						<ul>
+							<li v-for="category in categories"><a :href="`?category=${category.name}`">{{category.name}}</a></li>
+						</ul>
+					</div>
+				  </nav>
 
 				<!-- Main -->
 					<div id="main">
 					
 						<!-- First Section -->
 							<section id="first" class="main special">
-								
+								<div id="products_app">
+									<ul class="features">
+										<li v-if="!products.length">No products in this category</li>
+										<li v-for="product in products">
+											<img v-bind:src=product.image />
+											<h3>{{product.name}}</h3>
+											<p>{{product.short_description}}</p>
+											<p>Tags: {{product.tags}}</p>
+											<p>Categories: {{product.category}}</p>
+										</li>
+									</ul>
+								</div>
 							</section>
 
 					</div>
@@ -53,6 +64,8 @@
 			</div>
 
 		<!-- Scripts -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -60,8 +73,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="categories.js"></script>
-			<script src="products.js"></script>
+			<script src="vue.js"></script>
 
 	</body>
 </html>
